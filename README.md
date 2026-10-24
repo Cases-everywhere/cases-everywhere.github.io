@@ -5,7 +5,9 @@ Ouverture de caisses CS2 pour le fun, en widget de barre des menus (Mac), en wid
 
 ## Installer
 
-Les installateurs sont dans `dist/` (après `npm run dist`) :
+Site : https://agenceoriginal.github.io/cases-everywhere/ · Téléchargements : [dernière Release](https://github.com/agenceoriginal/cases-everywhere/releases/latest).
+
+Les installateurs sont aussi dans `dist/` après `npm run dist` :
 
 | Plateforme | Fichier | Installation |
 |---|---|---|
@@ -33,7 +35,7 @@ npm run dist       # crée les 3 fichiers de dist/ (DMG, EXE, ZIP)
 npm run cases      # regénère app/cases.js (liste des caisses dans scripts/fetch-cases.mjs)
 npm run icons      # regénère toutes les icônes
 npm run promo      # regénère les bannières du Chrome Web Store (store/)
-npm run site       # prépare le site vitrine (site/) : skins, icônes, téléchargements
+npm run site       # prépare le site vitrine (site/) : skins et icônes
 ```
 
 ```

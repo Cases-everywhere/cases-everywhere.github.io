@@ -1,6 +1,6 @@
-// Prepares the website in site/: skin list, icons and download files.
-// Usage: npm run site   (run `npm run dist` first so the installers exist)
-import { cpSync, existsSync, linkSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+// Prepares the website in site/: skin list and icons.
+// Usage: npm run site   (download buttons point to the latest GitHub Release)
+import { cpSync, readFileSync, writeFileSync } from "node:fs";
 
 const SITE = "site";
 const CASE_DATA = new Function(`${readFileSync("app/cases.js", "utf8")}; return CASE_DATA;`)();
@@ -48,13 +48,4 @@ writeFileSync(`${SITE}/skins.js`,
 // Favicon.
 cpSync("app/icons", `${SITE}/icons`, { recursive: true });
 
-// Downloads: hard links so the 300 MB of installers aren't duplicated on disk.
-mkdirSync(`${SITE}/downloads`, { recursive: true });
-const files = existsSync("dist") ? readdirSync("dist").filter((f) => /\.(dmg|exe|zip)$/.test(f)) : [];
-for (const f of files) {
-  const to = `${SITE}/downloads/${f}`;
-  rmSync(to, { force: true });
-  try { linkSync(`dist/${f}`, to); } catch { cpSync(`dist/${f}`, to); }
-}
-console.log(`site/ ready: ${knives.length + gloves.length + dopplers.length} hover skins, ${reel.length} reel items, ${files.length} downloads`);
-if (!files.length) console.warn("No installers in dist/ — run `npm run dist` first.");
+console.log(`site/ ready: ${knives.length + gloves.length + dopplers.length} hover skins, ${reel.length} reel items`);
