@@ -64,7 +64,7 @@ if (!reduceMotion) {
 const reelBox = $("#reel-box"), reelTrack = $("#reel"), reelWin = $("#reel-win");
 const LANDING_GOLD = [...SKINS.knives, ...SKINS.gloves, ...SKINS.dopplers];
 const STRIP = 70;                      // tiles in the strip
-const SPIN_MS = 5200, SHOW_MS = 2600;
+const SPIN_MS = 3000, SHOW_MS = 2200;
 let strip = [], offset = 0;            // offset = current translateX of the track, in px
 
 const tileHtml = (s) => `<div class="tile" style="--rc:${RARITY[s.rarity]}"><img src="${steamImg(s.image, 256)}" alt=""></div>`;
