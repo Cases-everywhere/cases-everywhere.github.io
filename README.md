@@ -5,7 +5,7 @@ Ouverture de caisses CS2 pour le fun, en widget de barre des menus (Mac), en wid
 
 ## Installer
 
-Site : https://agenceoriginal.github.io/cases-everywhere/ · Téléchargements : [dernière Release](https://github.com/agenceoriginal/cases-everywhere/releases/latest).
+Site : https://cases-everywhere.github.io/ · Téléchargements : [dernière Release](https://github.com/Cases-everywhere/cases-everywhere.github.io/releases/latest).
 
 Les installateurs sont aussi dans `dist/` après `npm run dist` :
 
@@ -51,7 +51,7 @@ scripts/    génération des caisses et des icônes
 
 Les contributions sont les bienvenues : idées, bugs, nouvelles caisses, traductions.
 
-1. Ouvre une [issue](https://github.com/agenceoriginal/cases-everywhere/issues) pour décrire le bug ou l'idée.
+1. Ouvre une [issue](https://github.com/Cases-everywhere/cases-everywhere.github.io/issues) pour décrire le bug ou l'idée.
 2. Fork le dépôt, crée une branche, puis ouvre une pull request.
 3. Teste ta modif avec `npm start` (widget) et/ou le serveur du site (`python3 -m http.server -d site`).
 
