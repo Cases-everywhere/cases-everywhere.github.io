@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cases-everywhere.github.io/sitemap.xml
