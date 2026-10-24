@@ -38,8 +38,8 @@ html, body {
   flex-direction: column;
   overflow: hidden;
 }
-/* In the extension popup, the browser already draws the frame. */
-body.ext #widget { border: 0; border-radius: 0; }
+/* In the extension popup the window itself stays square: darken the corners behind the rounded card. */
+body.ext { background: #050608; }
 
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
 button:disabled { opacity: .4; cursor: default; }
@@ -180,7 +180,11 @@ body.desktop .desktop-only { display: inline-block; }
 .btn.ghost { padding: 6px 12px; background: var(--panel); font-size: 12px; }
 .btn.ghost:hover { background: var(--line); }
 .btn.small { padding: 4px 10px; font-size: 11px; }
-#open { margin-top: 8px; }
+.open-row { display: flex; gap: 6px; margin-top: 8px; }
+#open { flex: 1; }
+#auto { padding: 0 14px; }
+#auto.on { background: var(--accent); color: #1a1405; animation: pulse 1.2s ease-in-out infinite; }
+@keyframes pulse { 50% { filter: brightness(1.2); } }
 
 .chip {
   padding: 4px 8px; border-radius: 999px;

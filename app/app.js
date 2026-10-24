@@ -363,6 +363,8 @@ function resetAccount() {
 // ---------- spin ----------
 let spinning = false;
 let lastWin = null;
+let auto = false;
+let autoTimer;
 
 function open() {
   const c = currentCase();
@@ -391,7 +393,7 @@ function open() {
   const viewW = $("#reel-wrap").clientWidth;
   const jitter = (Math.random() - 0.5) * (TILE - 16);
   const target = WIN_INDEX * TILE + 38 + jitter - viewW / 2;
-  const duration = state.fast ? 700 : 5200;
+  const duration = state.fast ? 500 : 3200;
   const t0 = performance.now();
   let lastIdx = -1;
 
@@ -424,7 +426,25 @@ function finish(tile, win) {
   renderTop();
 
   if (isBigWin(win)) showReveal(win);
-  else fanfare(win.rarity);
+  else { fanfare(win.rarity); queueAuto(); }
+}
+
+// ---------- auto mode: keep opening until stopped or broke ----------
+function setAuto(on) {
+  auto = on && state.balance >= currentCase().price;
+  clearTimeout(autoTimer);
+  $("#auto").classList.toggle("on", auto);
+  $("#auto").textContent = auto ? "Stop" : "Auto";
+  if (auto && !spinning && $("#reveal").hidden) open();
+}
+
+function queueAuto() {
+  if (!auto) return;
+  clearTimeout(autoTimer);
+  autoTimer = setTimeout(() => {
+    if (state.balance < currentCase().price) return setAuto(false);
+    open();
+  }, state.fast ? 400 : 900);
 }
 
 // ---------- big reveal for Covert / Rare Special drops ----------
@@ -452,6 +472,7 @@ function showReveal(win) {
 function hideReveal() {
   $("#reveal").hidden = true;
   cancelAnimationFrame(confettiRaf);
+  queueAuto();
 }
 
 function countUp(el, from, to, ms) {
@@ -585,6 +606,7 @@ async function importSaveCode() {
 
 // ---------- wiring ----------
 $("#open").onclick = open;
+$("#auto").onclick = () => setAuto(!auto);
 $("#sell").onclick = () => { if (lastWin) sellItem(lastWin.id); hideResult(); };
 $("#keep").onclick = hideResult;
 $("#reveal-sell").onclick = () => { if (lastWin) sellItem(lastWin.id); hideResult(); hideReveal(); };
