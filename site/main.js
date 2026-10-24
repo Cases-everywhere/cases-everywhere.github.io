@@ -58,13 +58,13 @@ if (!reduceMotion) {
 }
 
 // ---------- reel: an automatic case opening, forever ----------
-// Spins, eases out onto a skin under the marker, shows it off, then spins again.
+// Spins, eases out onto a skin under the marker, then spins again right away.
 // Each new spin starts with skins popping out of the marker. After every stop the strip
 // is rebuilt from the winner onward (same position on screen), so it never runs out.
-const reelBox = $("#reel-box"), reelTrack = $("#reel"), reelWin = $("#reel-win");
+const reelBox = $("#reel-box"), reelTrack = $("#reel");
 const LANDING_GOLD = [...SKINS.knives, ...SKINS.gloves, ...SKINS.dopplers];
 const STRIP = 70;                      // tiles in the strip
-const SPIN_MS = 3000, SHOW_MS = 2200;
+const SPIN_MS = 3000, SHOW_MS = 500;
 let strip = [], offset = 0;            // offset = current translateX of the track, in px
 
 const tileHtml = (s) => `<div class="tile" style="--rc:${RARITY[s.rarity]}"><img src="${steamImg(s.image, 256)}" alt=""></div>`;
@@ -99,7 +99,6 @@ function spin() {
   reelBox.classList.remove("landed", "kick");
   reelBox.offsetWidth;                             // restart the kick animation
   reelBox.classList.add("spinning", "kick");
-  reelWin.classList.remove("show");
   const w = tileStep();
   place(centerOn(target, (Math.random() - 0.5) * w * 0.6), SPIN_MS);
   setTimeout(() => reelBox.classList.remove("spinning"), SPIN_MS * 0.5);
@@ -107,12 +106,8 @@ function spin() {
 }
 
 function land(i) {
-  const skin = strip[i];
   reelTrack.children[i].classList.add("win");
   reelBox.classList.add("landed");
-  reelWin.textContent = skin.name;
-  reelWin.style.setProperty("--rc", RARITY[skin.rarity]);
-  reelWin.classList.add("show");
   if (!reduceMotion) setTimeout(() => recycle(i), SHOW_MS);
 }
 

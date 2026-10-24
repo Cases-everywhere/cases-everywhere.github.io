@@ -102,7 +102,7 @@ h1 {
 .reel {
   --tw: 240px; --th: 190px;
   position: relative; overflow: hidden;
-  width: 100vw; margin: 44px calc(50% - 50vw) 0;
+  width: 100vw; margin: 44px calc(50% - 50vw) 24px;
   padding: 30px 0;
   border-block: 1px solid var(--line);
   background:
@@ -144,13 +144,6 @@ h1 {
   box-shadow: 0 0 0 2px var(--rc), 0 14px 50px color-mix(in srgb, var(--rc) 60%, transparent);
 }
 .tile.win img { transform: scale(1.12); }
-.reel-win {
-  min-height: 1.6em; margin: 18px 0 18px;
-  font: 700 22px var(--display); text-transform: uppercase; letter-spacing: .5px;
-  color: var(--rc, var(--muted));
-  opacity: 0; translate: 0 8px; transition: opacity .3s, translate .3s;
-}
-.reel-win.show { opacity: 1; translate: 0 0; }
 
 /* ---------- Sections ---------- */
 .section { max-width: var(--wrap); margin: 0 auto; padding: 110px 24px 20px; }
@@ -243,7 +236,6 @@ h2 { margin: 6px 0 14px; font: 700 clamp(34px, 5vw, 58px)/1.02 var(--display); t
   .hero { padding-top: 36px; }
   .claims li { font-size: 15px; }
   .reel { --tw: 150px; --th: 120px; padding: 22px 0; margin-top: 30px; }
-  .reel-win { font-size: 17px; }
   .foot { padding-inline: 16px; }
 }
 
