@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cases everywhere — Open CS2 cases anywhere</title>
+  <meta name="description" content="Open CS2 cases from your browser, your Mac menu bar or your Windows tray. Free knife and glove cases, virtual money only.">
+  <link rel="icon" href="icons/icon48.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Skins drifting behind the whole page; they light up when the cursor gets close. -->
+  <div id="floaters" aria-hidden="true"></div>
+  <div id="pops" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a class="brand" href="#top" data-pop>
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <rect width="100" height="100" rx="22" fill="#171a21" stroke="#262a34" stroke-width="2"/>
+        <path d="M50 19 L81 50 L50 81 L19 50 Z" fill="#f5c84c"/>
+        <path d="M50 36 L64 50 L50 64 L36 50 Z" fill="#c99a2e"/>
+      </svg>
+      <span>Cases everywhere</span>
+    </a>
+    <nav class="links">
+      <a href="#download" data-pop>Download</a>
+    </nav>
+    <a class="btn small gold" href="#download" data-pop>Get it free</a>
+  </header>
+
+  <main id="top">
+    <!-- ---------- Hero: the case reel spins on its own, forever ---------- -->
+    <section class="hero">
+      <h1>Cases <em class="shine">everywhere</em><br>you want</h1>
+      <ul class="claims">
+        <li data-pop>Open cases</li>
+        <li data-pop>Free <em class="shine">knives / gloves</em> cases</li>
+      </ul>
+
+      <div class="reel" id="reel-box" aria-hidden="true">
+        <div class="reel-track" id="reel"></div>
+        <div class="reel-marker"></div>
+      </div>
+      <p class="reel-win" id="reel-win">&nbsp;</p>
+    </section>
+
+    <!-- ---------- Stats ---------- -->
+    <section class="stats-wrap">
+      <div class="stats">
+        <div data-pop><b>12</b><span>cases, incl. knives &amp; gloves</span></div>
+        <div data-pop><b id="stat-skins">1 200+</b><span>skins to drop</span></div>
+        <div data-pop><b>0 €</b><span>ever spent</span></div>
+        <div data-pop><b>Space</b><span>to open a case</span></div>
+      </div>
+    </section>
+
+    <!-- ---------- Download ---------- -->
+    <section class="section" id="download">
+      <div class="section-head">
+        <h2>Everywhere you want</h2>
+        <p>Same app, three homes. Pick yours — it's free.</p>
+      </div>
+
+      <div class="downloads">
+        <article class="dl" id="dl-ext" data-os="ext">
+          <span class="pick">Recommended for you</span>
+          <div class="dl-icon"><svg><use href="#i-puzzle"/></svg></div>
+          <h3>Browser extension</h3>
+          <p class="dl-sub">Chrome · Brave · Edge · Opera</p>
+          <a class="btn gold" id="ext-link" href="downloads/Cases-everywhere-extension.zip" download data-pop data-burst>
+            Download the extension <small>.zip · 110 KB</small></a>
+          <ol>
+            <li>Unzip the file.</li>
+            <li>Open <code>chrome://extensions</code> and turn on <b>Developer mode</b>.</li>
+            <li>Click <b>Load unpacked</b> and pick the unzipped folder.</li>
+          </ol>
+        </article>
+
+        <article class="dl" id="dl-mac" data-os="mac">
+          <span class="pick">Recommended for you</span>
+          <div class="dl-icon"><svg><use href="#i-apple"/></svg></div>
+          <h3>macOS</h3>
+          <p class="dl-sub">Menu bar widget · Intel &amp; Apple Silicon</p>
+          <a class="btn gold" href="downloads/Cases-everywhere-1.0.0-mac.dmg" download data-pop data-burst>
+            Download for Mac <small>.dmg · 193 MB</small></a>
+          <ol>
+            <li>Open the .dmg and drag <b>Cases everywhere</b> into <b>Applications</b>.</li>
+            <li>First launch: right-click the app → <b>Open</b>.</li>
+            <li>Click the ◆ in your menu bar.</li>
+          </ol>
+        </article>
+
+        <article class="dl" id="dl-win" data-os="win">
+          <span class="pick">Recommended for you</span>
+          <div class="dl-icon"><svg><use href="#i-windows"/></svg></div>
+          <h3>Windows</h3>
+          <p class="dl-sub">Tray widget · Windows 10 &amp; 11</p>
+          <a class="btn gold" href="downloads/Cases-everywhere-1.0.0-win.exe" download data-pop data-burst>
+            Download for Windows <small>.exe · 97 MB</small></a>
+          <ol>
+            <li>Double-click the .exe, it installs in one click.</li>
+            <li>SmartScreen? <b>More info</b> → <b>Run anyway</b>.</li>
+            <li>Click the ◆ next to the clock.</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p><b>100 % virtual money.</b> No real payments, no deposits, nothing to cash out — just for fun.</p>
+    <p class="gh"><a href="https://github.com/agenceoriginal/cases-everywhere" target="_blank" rel="noopener" data-pop><svg><use href="#i-github"/></svg>Contribute on GitHub</a> — ideas, bug reports and pull requests welcome.</p>
+    <p>Fan project, not affiliated with Valve. Skin data: <a href="https://github.com/ByMykel/CSGO-API" target="_blank" rel="noopener">ByMykel/CSGO-API</a>.</p>
+  </footer>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></symbol>
+    <symbol id="i-puzzle" viewBox="0 0 24 24"><path fill="currentColor" d="M10 3a2 2 0 0 1 4 0v1h4a1 1 0 0 1 1 1v4h1a2 2 0 0 1 0 4h-1v5a1 1 0 0 1-1 1h-4v-1a2 2 0 0 0-4 0v1H5a1 1 0 0 1-1-1v-4h1a2 2 0 0 0 0-4H4V5a1 1 0 0 1 1-1h5V3z"/></symbol>
+    <symbol id="i-apple" viewBox="0 0 24 24"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.3 1.2 9.7.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-3.8zM14 5.5c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.6 2.8-1.4z"/></symbol>
+    <symbol id="i-windows" viewBox="0 0 24 24"><path fill="currentColor" d="M3 5.5 10.4 4.5v7H3zM11.4 4.3 21 3v8.5h-9.6zM3 12.5h7.4v7L3 18.5zM11.4 12.5H21V21l-9.6-1.3z"/></symbol>
+  </svg>
+
+  <script src="skins.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

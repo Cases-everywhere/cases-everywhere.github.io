@@ -1,0 +1,163 @@
+<!doctype html>
+<!-- Chrome Web Store promo images. Rendered by scripts/make-promo.mjs:
+     promo.html?w=440&h=280 (small tile) and promo.html?w=1400&h=560 (marquee). -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Cases everywhere promo</title>
+<style>
+  :root {
+    --bg: #0f1115; --panel: #171a21; --line: #262a34; --text: #e8eaf0; --muted: #8a90a2;
+    --gold: #f5c84c; --gold-dark: #c99a2e; --red: #ef4444; --pink: #e047c4; --blue: #4b7bff; --purple: #8b5cf6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { overflow: hidden; background: var(--bg); }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif; color: var(--text); }
+
+  /* Everything is sized in --u, where 1u = 1px on the 440x280 tile. */
+  .canvas {
+    position: relative; overflow: hidden;
+    width: var(--w); height: var(--h);
+    background:
+      radial-gradient(circle at 74% 46%, #f5c84c40, transparent 42%),
+      radial-gradient(circle at 10% 110%, #8b5cf633, transparent 45%),
+      var(--bg);
+  }
+  .rays {
+    position: absolute; left: 74%; top: 46%;
+    width: calc(var(--u) * 700); height: calc(var(--u) * 700);
+    transform: translate(-50%, -50%);
+    background: repeating-conic-gradient(#f5c84c1c 0 7deg, transparent 7deg 18deg);
+    mask-image: radial-gradient(circle, #000 8%, transparent 58%);
+  }
+
+  .copy {
+    position: absolute; left: calc(var(--u) * 26); top: 50%;
+    transform: translateY(-50%);
+    width: calc(var(--u) * 210);
+  }
+  .logo { display: flex; align-items: center; gap: calc(var(--u) * 9); }
+  .logo svg { width: calc(var(--u) * 30); height: calc(var(--u) * 30); flex: none; }
+  .logo span { font-size: calc(var(--u) * 21); font-weight: 900; letter-spacing: -0.5px; white-space: nowrap; }
+  h1 {
+    margin-top: calc(var(--u) * 14);
+    font-size: calc(var(--u) * 21); line-height: 1.12; font-weight: 800;
+  }
+  h1 em { font-style: normal; color: var(--gold); }
+  .chips { display: flex; flex-wrap: wrap; gap: calc(var(--u) * 5); margin-top: calc(var(--u) * 14); }
+  .chip {
+    font-size: calc(var(--u) * 9.5); font-weight: 700;
+    padding: calc(var(--u) * 4) calc(var(--u) * 8); border-radius: 999px;
+    background: var(--panel); border: 1px solid var(--line); color: var(--muted);
+    white-space: nowrap;
+  }
+  .chip.gold { color: #1a1405; background: var(--gold); border-color: var(--gold); }
+
+  .hero {
+    position: absolute; left: 77%; top: 48%;
+    transform: translate(-50%, -50%) rotate(-14deg);
+    width: calc(var(--u) * 170);
+    filter: drop-shadow(0 0 calc(var(--u) * 18) #f5c84caa);
+  }
+  .hero-label {
+    position: absolute; left: 77%; top: calc(48% + var(--u) * 54);
+    transform: translateX(-50%);
+    font-size: calc(var(--u) * 12); font-weight: 900; letter-spacing: 1.5px;
+    color: var(--gold); text-shadow: 0 0 calc(var(--u) * 10) var(--gold);
+    white-space: nowrap;
+  }
+
+  .reel {
+    position: absolute; right: calc(var(--u) * -20); bottom: calc(var(--u) * 14);
+    display: flex; gap: calc(var(--u) * 5);
+  }
+  .tile {
+    width: calc(var(--u) * 54); height: calc(var(--u) * 42);
+    border-radius: calc(var(--u) * 6);
+    background: linear-gradient(180deg, var(--panel) 55%, color-mix(in srgb, var(--rc) 35%, var(--panel)));
+    border-bottom: calc(var(--u) * 2.5) solid var(--rc);
+    display: grid; place-items: center;
+    opacity: .9;
+  }
+  .tile img { width: 80%; height: 80%; object-fit: contain; }
+  .marker {
+    position: absolute; bottom: calc(var(--u) * 10); height: calc(var(--u) * 50);
+    width: 2px; background: var(--gold); box-shadow: 0 0 8px var(--gold);
+  }
+
+  /* The marquee is wider: give the reel and hero more room. */
+  .wide .copy { left: calc(var(--u) * 60); width: calc(var(--u) * 260); }
+  .wide .copy h1 { font-size: calc(var(--u) * 25); }
+  .wide .logo span { font-size: calc(var(--u) * 25); }
+  .wide .hero { left: 66%; width: calc(var(--u) * 210); }
+  .wide .hero-label { left: 66%; }
+  .wide .rays { left: 66%; }
+</style>
+</head>
+<body>
+  <div class="canvas" id="canvas">
+    <div class="rays"></div>
+    <img id="hero" class="hero" alt="">
+    <div class="hero-label">★ JACKPOT ★</div>
+    <div class="reel" id="reel"></div>
+
+    <div class="copy">
+      <div class="logo">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <rect width="100" height="100" rx="22" fill="#171a21" stroke="#262a34" stroke-width="2"/>
+          <path d="M50 19 L81 50 L50 81 L19 50 Z" fill="#f5c84c"/>
+          <path d="M50 36 L64 50 L50 64 L36 50 Z" fill="#c99a2e"/>
+        </svg>
+        <span>Cases everywhere</span>
+      </div>
+      <h1>Ouvre des caisses,<br><em>sans perdre un centime.</em></h1>
+      <div class="chips">
+        <span class="chip gold">100 % argent fictif</span>
+        <span class="chip">Couteaux &amp; gants</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="../app/cases.js"></script>
+  <script>
+    const q = new URLSearchParams(location.search);
+    const w = +q.get("w") || 440, h = +q.get("h") || 280;
+    const root = document.documentElement.style;
+    root.setProperty("--w", w + "px");
+    root.setProperty("--h", h + "px");
+    root.setProperty("--u", (h / 280) + "px");
+    if (w / h > 2) document.body.classList.add("wide");
+
+    const all = CASE_DATA.flatMap((c) => Object.entries(c.items).flatMap(([r, items]) => items.map(([n, img]) => ({ n, img, r }))));
+    const find = (name) => all.find((i) => i.n === name);
+    const img = (url, s) => `${url}/${s}fx${s}f`;
+
+    document.getElementById("hero").src = img(find("★ Butterfly Knife | Fade").img, 512);
+
+    const COLORS = { blue: "var(--blue)", purple: "var(--purple)", pink: "var(--pink)", red: "var(--red)", gold: "var(--gold)" };
+    const reelItems = [
+      ["★ Karambit | Doppler (Sapphire)", "gold"],
+      ["AWP | Lightning Strike", "red"],
+      ["★ Sport Gloves | Vice", "gold"],
+      ["M4A1-S | Black Lotus", "pink"],
+      ["★ M9 Bayonet | Marble Fade", "red"],
+      ["Desert Eagle | Printstream", "red"],
+      ["★ Talon Knife | Doppler (Ruby)", "gold"],
+      ["AK-47 | Nightwish", "red"],
+      ["★ Bayonet | Tiger Tooth", "pink"],
+      ["Glock-18 | Water Elemental", "pink"],
+    ];
+    const count = Math.ceil((w * 0.62) / (59 * (h / 280)));
+    const reel = document.getElementById("reel");
+    for (const [name, rarity] of reelItems.slice(0, count)) {
+      const item = find(name);
+      if (!item) continue;
+      const t = document.createElement("div");
+      t.className = "tile";
+      t.style.setProperty("--rc", COLORS[rarity]);
+      t.innerHTML = `<img src="${img(item.img, 128)}" alt="">`;
+      reel.appendChild(t);
+    }
+  </script>
+</body>
+</html>

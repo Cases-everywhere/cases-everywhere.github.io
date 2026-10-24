@@ -1,0 +1,46 @@
+{
+  "name": "cases-everywhere",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ouverture de caisses CS pour le fun, en widget desktop et extension navigateur. Argent fictif.",
+  "author": "Tim",
+  "license": "UNLICENSED",
+  "main": "desktop/main.js",
+  "scripts": {
+    "start": "electron .",
+    "icons": "node scripts/make-icons.mjs",
+    "promo": "node scripts/make-promo.mjs",
+    "site": "node scripts/build-site.mjs",
+    "cases": "node scripts/fetch-cases.mjs",
+    "build:mac": "electron-builder --mac",
+    "build:win": "electron-builder --win",
+    "build:ext": "mkdir -p dist && cd app && zip -qr ../dist/Cases-everywhere-extension.zip . -x '.*'",
+    "dist": "npm run build:ext && electron-builder --mac --win"
+  },
+  "devDependencies": {
+    "electron": "^38.0.0",
+    "electron-builder": "^26.0.0"
+  },
+  "build": {
+    "appId": "com.caseseverywhere.app",
+    "productName": "Cases everywhere",
+    "files": ["desktop/**", "app/**"],
+    "artifactName": "Cases-everywhere-${version}-${os}.${ext}",
+    "mac": {
+      "target": { "target": "dmg", "arch": "universal" },
+      "category": "public.app-category.games",
+      "extendInfo": { "LSUIElement": true }
+    },
+    "dmg": { "title": "Cases everywhere" },
+    "win": {
+      "target": { "target": "nsis", "arch": "x64" }
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "runAfterFinish": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "Cases everywhere"
+    }
+  }
+}

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cases everywhere</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="widget">
+    <header id="bar">
+      <span id="balance" class="balance" title="Solde fictif"></span>
+      <div class="bar-actions">
+        <button id="settings-btn" class="icon" title="Paramètres">⚙️</button>
+        <button id="pin" class="icon desktop-only" title="Garder ouvert">📌</button>
+        <button id="close" class="icon desktop-only" title="Masquer">✕</button>
+      </div>
+    </header>
+
+    <nav id="tabs">
+      <button data-tab="cases" class="active">Caisses</button>
+      <button data-tab="inv">Inventaire <span id="inv-count">0</span></button>
+    </nav>
+
+    <section id="tab-cases" class="tab active">
+      <div class="strip">
+        <button id="prev" class="arrow prev" title="Caisses précédentes">‹</button>
+        <div id="case-picker"></div>
+        <button id="next" class="arrow next" title="Caisses suivantes">›</button>
+      </div>
+
+      <div id="reel-wrap">
+        <div id="reel"></div>
+        <div id="marker"></div>
+      </div>
+
+      <div class="stage">
+        <div id="showcase">
+          <div id="showcase-art"></div>
+          <div id="showcase-name"></div>
+          <div id="showcase-meta"></div>
+        </div>
+        <div id="result" class="hidden">
+          <div id="result-name"></div>
+          <div id="result-meta"></div>
+          <div class="result-actions">
+            <button id="sell" class="btn ghost">Vendre</button>
+            <button id="keep" class="btn ghost">Garder</button>
+          </div>
+        </div>
+      </div>
+
+      <button id="open" class="btn primary">Ouvrir</button>
+      <footer id="stats"></footer>
+    </section>
+
+    <section id="tab-inv" class="tab">
+      <div id="inv-head">
+        <span id="inv-total"></span>
+        <button id="sell-all" class="btn ghost small">Tout vendre</button>
+      </div>
+      <ul id="inv-list"></ul>
+    </section>
+
+    <section id="tab-settings" class="tab">
+      <h3>Paramètres</h3>
+
+      <div class="field">
+        <span>Devise</span>
+        <div class="segmented">
+          <button data-currency="EUR">€ Euro</button>
+          <button data-currency="USD">$ Dollar</button>
+        </div>
+      </div>
+
+      <label class="field">
+        <span>Solde de départ (max 1 000)</span>
+        <input id="credits" type="number" min="1" max="1000" step="50">
+      </label>
+      <div class="presets">
+        <button class="chip" data-credits="100">100</button>
+        <button class="chip" data-credits="250">250</button>
+        <button class="chip" data-credits="500">500</button>
+        <button class="chip" data-credits="1000">1 000</button>
+      </div>
+      <p class="hint">Appliqué au reset. Avec 1 000, tu peux ouvrir 10 caisses Couteaux.</p>
+
+      <div class="field">
+        <span>Sauvegarde</span>
+        <p class="hint">Ta partie est sauvegardée automatiquement. Copie ton code pour garder ton inventaire avant un reset, ou pour le passer entre l'app et l'extension.</p>
+        <div class="save-actions">
+          <button id="save-copy" class="btn ghost">Copier mon code</button>
+          <button id="save-show-import" class="btn ghost">Importer un code</button>
+        </div>
+        <div id="save-import" hidden>
+          <textarea id="save-input" rows="3" placeholder="Colle ton code ici (CE1.…)" spellcheck="false"></textarea>
+          <button id="save-load" class="btn primary small-primary">Charger la sauvegarde</button>
+        </div>
+        <p id="save-status" class="hint"></p>
+      </div>
+
+      <label class="toggle"><span>Son</span><input id="opt-sound" type="checkbox"></label>
+      <label class="toggle"><span>Ouverture rapide</span><input id="opt-fast" type="checkbox"></label>
+
+      <button id="reset" class="btn ghost reset">Réinitialiser le compte</button>
+      <p class="hint">Remet le solde de départ et efface l'inventaire et les stats.</p>
+    </section>
+
+    <div id="reveal" class="reveal" hidden>
+      <div class="rays"></div>
+      <canvas id="confetti" class="confetti"></canvas>
+      <div class="reveal-body">
+        <div id="reveal-title" class="reveal-title"></div>
+        <img id="reveal-img" alt="">
+        <div id="reveal-name" class="reveal-name"></div>
+        <div id="reveal-meta" class="reveal-meta"></div>
+        <div id="reveal-value" class="reveal-value"></div>
+        <div class="result-actions">
+          <button id="reveal-sell" class="btn ghost">Vendre</button>
+          <button id="reveal-keep" class="btn primary">Garder</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="welcome" class="reveal gold" hidden>
+      <div class="rays"></div>
+      <canvas id="welcome-confetti" class="confetti"></canvas>
+      <div class="reveal-body">
+        <div class="reveal-title">YOU WIN</div>
+        <div id="welcome-value" class="welcome-value"></div>
+        <div class="reveal-meta">Bonus de bienvenue · argent fictif</div>
+        <div class="result-actions">
+          <button id="welcome-claim" class="btn primary">Récupérer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="cases.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
